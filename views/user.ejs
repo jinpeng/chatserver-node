@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User: <%= user.name %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include partials/banner.ejs %>
+
+    <a href="/users" id="all_users">Back to all users</a>
+    <h1><%= user.name %></h1>
+    <p>
+      Created <%- timeago(user.created) %>.
+    </p>
+
+    <form action="<%= user.url %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE"/>
+      <input type="submit" value="Delete"/>
+    </form>
+  </body>
+</html>

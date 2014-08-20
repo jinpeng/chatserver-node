@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Users</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include partials/banner.ejs %>
+
+    <h1>All Users</h1>
+    <table id="users">
+    <% for (var i = 0; i < users.length; i++) { %>
+      <% var user = users[i] %>
+      <tr>
+        <td class="title">
+          <a href="<%= user.url %>"><%= user.name %></a>
+        </td>
+        <td><%= user.password %></td>
+        <td><%- timeago(user.created) %></td>
+      </tr>
+    <% } %>
+    </table>
+  </body>
+</html>
