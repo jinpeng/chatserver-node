@@ -5,6 +5,11 @@
  */
 
 var express = require('express');
+var favicon = require('serve-favicon');
+var bodyParser = require('body-parser')
+var methodOverride = require('method-override')
+var morgan = require('morgan')
+var errorhandler = require('errorhandler')
 var routes = require('./routes');
 var user = require('./routes/user');
 var room = require('./routes/room');
@@ -19,17 +24,16 @@ var app = express();
 app.set('port', process.env.PORT || 3020);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(app.router);
+app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(morgan('combined'))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(methodOverride('X-HTTP-Method-Override'))
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+    app.use(errorhandler())
 }
 
 app.get('/', routes.index);

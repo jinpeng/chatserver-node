@@ -71,7 +71,7 @@ exports.list = function(req, res) {
         } else {
             res.format({
                 json: function() {
-                    res.json(500, {
+                    res.status(500).json({
                         error: err
                     });
                 },
@@ -107,7 +107,7 @@ exports.get = function(req, res) {
         } else {
             res.format({
                 json: function() {
-                    res.json(500, {
+                    res.status(500).json({
                         error: err
                     });
                 },
@@ -143,7 +143,7 @@ exports.add = function(req, res) {
                     json: function() {
                         room.id = id;
                         room.name = req.body['room']['name'];
-                        res.json(201, room);
+                        res.status(201).json(room);
                     },
                     html: function() {
                         res.writeHead(303, {
@@ -174,7 +174,7 @@ exports.add = function(req, res) {
                     res.format({
                         json: function() {
                             room.id = id;
-                            res.json(201, room);
+                            res.status(201).json(room);
                         },
                         html: function() {
                             res.writeHead(303, {
@@ -201,7 +201,7 @@ exports.delete = function(req, res) {
     if (err) {
       res.format({
         json: function() {
-          res.json(500, { error: err });
+          res.status(500).json({ error: err });
         },
         html: function() {
           res.send(500, err);
@@ -211,7 +211,7 @@ exports.delete = function(req, res) {
     else {
       res.format({
         json: function() {
-          res.json(200, {});
+          res.status(200).json({});
         },
         html: function() {
           res.redirect('/rooms');
@@ -266,7 +266,7 @@ exports.joinRoom = function(req, res) {
                                 if (!err) {
                                     res.format({
                                         json: function() {
-                                            res.json(201, room);
+                                            res.status(201).json(room);
                                         },
                                         html: function() {
                                             res.render('room', {
@@ -278,7 +278,7 @@ exports.joinRoom = function(req, res) {
                                 } else {
                                     res.format({
                                         json: function() {
-                                            res.json(500, {
+                                            res.status(500).json({
                                                 error: err
                                             });
                                         },
@@ -292,7 +292,7 @@ exports.joinRoom = function(req, res) {
         } else {
             res.format({
                 json: function() {
-                    res.json(500, {
+                    res.status(500).json({
                         error: err
                     });
                 },
@@ -326,7 +326,7 @@ exports.leaveRoom = function(req, res) {
                                 if (!err) {
                                     res.format({
                                         json: function() {
-                                            res.json(201, room);
+                                            res.status(201).json(room);
                                         },
                                         html: function() {
                                             res.render('room', {
@@ -338,7 +338,7 @@ exports.leaveRoom = function(req, res) {
                                 } else {
                                     res.format({
                                         json: function() {
-                                            res.json(500, {
+                                            res.status(500).json({
                                                 error: err
                                             });
                                         },
@@ -353,7 +353,7 @@ exports.leaveRoom = function(req, res) {
         } else {
             res.format({
                 json: function() {
-                    res.json(500, {
+                    res.status(500).json({
                         error: err
                     });
                 },
@@ -401,7 +401,7 @@ exports.getMessages = function(req, res) {
         } else {
             res.format({
                 json: function() {
-                    res.json(500, {
+                    res.status(500).json({
                         error: err
                     });
                 },
@@ -448,7 +448,7 @@ exports.postMessages = function(req, res) {
                                     if (!err) {
                                         res.format({
                                             json: function() {
-                                                res.json(201, room);
+                                                res.status(201).json(room);
                                             },
                                             html: function() {
                                                 res.render('room', {
@@ -460,7 +460,7 @@ exports.postMessages = function(req, res) {
                                     } else {
                                         res.format({
                                             json: function() {
-                                                res.json(500, {
+                                                res.status(500).json({
                                                     error: err
                                                 });
                                             },
@@ -474,7 +474,7 @@ exports.postMessages = function(req, res) {
             } else {
                 res.format({
                     json: function() {
-                        res.json(400, {
+                        res.status(400).json({
                             error: err
                         });
                     },
@@ -486,7 +486,7 @@ exports.postMessages = function(req, res) {
         } else {
             res.format({
                 json: function() {
-                    res.json(500, {
+                    res.status(500).json({
                         error: err
                     });
                 },

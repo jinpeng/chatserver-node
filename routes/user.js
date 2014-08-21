@@ -61,7 +61,7 @@ exports.list = function(req, res) {
         } else {
             res.format({
                 json: function() {
-                    res.json(500, {
+                    res.status(500).json({
                         error: err
                     });
                 },
@@ -97,7 +97,7 @@ exports.get = function(req, res) {
         } else {
             res.format({
                 json: function() {
-                    res.json(500, {
+                    res.status(500).json({
                         error: err
                     });
                 },
@@ -134,7 +134,7 @@ exports.add = function(req, res) {
                 res.format({
                     json: function() {
                         user.id = id;
-                        res.json(201, user);
+                        res.status(201).json(user);
                     },
                     html: function() {
                         res.writeHead(303, {
@@ -167,7 +167,7 @@ exports.add = function(req, res) {
                     res.format({
                         json: function() {
                             user.id = id;
-                            res.json(201, user);
+                            res.status(201).json(user);
                         },
                         html: function() {
                             res.writeHead(303, {
@@ -194,7 +194,7 @@ exports.delete = function(req, res) {
     if (err) {
       res.format({
         json: function() {
-          res.json(500, { error: err });
+          res.status(500).json({ error: err });
         },
         html: function() {
           res.send(500, err);
@@ -204,7 +204,7 @@ exports.delete = function(req, res) {
     else {
       res.format({
         json: function() {
-          res.json(200, {});
+          res.status(200).json({});
         },
         html: function() {
           res.redirect('/users');
@@ -242,7 +242,7 @@ exports.login = function(req, res) {
                                 if (!err) {
                                     res.format({
                                         json: function() {
-                                            res.json(201, user);
+                                            res.status(201).json(user);
                                         },
                                         html: function() {
                                             res.render('user', {
@@ -254,7 +254,7 @@ exports.login = function(req, res) {
                                 } else {
                                     res.format({
                                         json: function() {
-                                            res.json(500, {
+                                            res.status(500).json({
                                                 error: err
                                             });
                                         },
@@ -268,7 +268,7 @@ exports.login = function(req, res) {
         } else {
             res.format({
                 json: function() {
-                    res.json(500, {
+                    res.status(500).json({
                         error: err
                     });
                 },
@@ -304,7 +304,7 @@ exports.logout = function(req, res) {
                                 if (!err) {
                                     res.format({
                                         json: function() {
-                                            res.json(200, user);
+                                            res.status(200).json(user);
                                         },
                                         html: function() {
                                             res.render('user', {
@@ -316,7 +316,7 @@ exports.logout = function(req, res) {
                                 } else {
                                     res.format({
                                         json: function() {
-                                            res.json(500, {
+                                            res.status(500).json({
                                                 error: err
                                             });
                                         },
@@ -330,7 +330,7 @@ exports.logout = function(req, res) {
         } else {
             res.format({
                 json: function() {
-                    res.json(500, {
+                    res.status(500).json({
                         error: err
                     });
                 },
